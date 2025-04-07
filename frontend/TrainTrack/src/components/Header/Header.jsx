@@ -1,29 +1,39 @@
-// src/components/Header.jsx
+import React from "react";
 import "./Header.css";
+import NavItem from "../NavItem/NavItem";
 import { Home, PlusCircle, User, LogOut } from "lucide-react";
 
-export default function Header() {
+const Header = () => {
   return (
     <header className="header">
       <div className="header-top">
-        <img src="/logo.png" alt="Logo" className="logo" />
-        <h1 className="brand">TrainTrack</h1>
+        <div className="header-inner">
+          <div className="logo-container">
+            <img src="/logo.png" alt="Logo" className="logo" />
+            <h1 className="brand">TrainTrack</h1>
+          </div>
+        </div>
       </div>
       <nav className="nav-bar">
-        <NavItem icon={<Home size={18} />} text="Início" />
-        <NavItem icon={<PlusCircle size={18} />} text="Adicionar treino" />
-        <NavItem icon={<User size={18} />} text="Perfil e configurações" />
-        <NavItem icon={<LogOut size={18} />} text="Sair" />
+        <div className="header-inner">
+          <div className="nav-content">
+            <NavItem icon={<Home size={16} />} text="Início" to="/home" />
+            <NavItem
+              icon={<PlusCircle size={16} />}
+              text="Adicionar treino"
+              to="/addWorkout"
+            />
+            <NavItem
+              icon={<User size={16} />}
+              text="Perfil e configurações"
+              to="/profile"
+            />
+            <NavItem icon={<LogOut size={16} />} text="Sair" to="/login" />
+          </div>
+        </div>
       </nav>
     </header>
   );
-}
+};
 
-function NavItem({ icon, text, active }) {
-  return (
-    <button className={`nav-item ${active ? "active" : ""}`}>
-      {icon}
-      {text}
-    </button>
-  );
-}
+export default Header;
