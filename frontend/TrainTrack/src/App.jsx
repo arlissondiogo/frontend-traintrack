@@ -8,13 +8,17 @@ import Login from "./Pages/Login/Login.jsx";
 function App() {
   return (
     <BrowserRouter>
-      <Header />
-      <Routes>
-        <Route path="/home" element={<Home />} />
-        <Route path="/adicionar" element={<AddWorkout />} />
-        <Route path="/perfil" element={<Profile />} />
-        <Route path="/login" element={<Login />} />
-      </Routes>
+      <div className="app-container">
+        <Header />
+        <main className="main-content">
+          <Routes>
+            <Route path="/home" element={<Home />} />
+            <Route path="/adicionar" element={<AddWorkout />} />
+            <Route path="/perfil" element={<Profile />} />
+            <Route path="/login" element={<Login />} />
+          </Routes>
+        </main>
+      </div>
     </BrowserRouter>
   );
 }

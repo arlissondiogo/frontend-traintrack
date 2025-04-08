@@ -18,7 +18,7 @@
   margin: 0 auto;
   padding: 10px 20px;
   display: flex;
-  justify-content: center; /* centraliza horizontalmente */
+  justify-content: center;
 }
 
 .logo-container {
@@ -34,7 +34,7 @@
 .brand {
   font-size: 24px;
   font-weight: bold;
-  color: #333;
+  color: #030303;
   display: flex;
   align-items: center; /* Centraliza verticalmente */
   justify-content: center; /* Centraliza horizontalmente */
