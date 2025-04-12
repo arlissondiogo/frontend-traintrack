@@ -13,7 +13,7 @@ Repositório para desenvolvimento do projeto **Traintrack**.
 git clone https://github.com/AndrePianco/Traintrack.git
 
 # Acesse a pasta do projeto
-cd Traintrack/frontend/TrainTrack
+cd Traintrack/frontend
 
 # Instale as dependências
 npm install
