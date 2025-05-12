@@ -76,7 +76,7 @@ function TrainTrackLogin() {
           </form>
 
           <p className="signup">
-            Não tem uma conta? <a href="#">Registre-se agora</a>
+            Não tem uma conta? <a href="/cadastro">Registre-se agora</a>
           </p>
         </div>
       </div>

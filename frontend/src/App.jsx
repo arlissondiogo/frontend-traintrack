@@ -6,24 +6,25 @@ import AddWorkout from "./Pages/AddWorkout/AddWorkout.jsx";
 import Profile from "./Pages/Profile/Profile.jsx";
 import Login from "./Pages/Login/TrainTrackLogin.jsx";
 import Button from "./components/Button/Button.jsx";
+import SingUp from "./Pages/SingUp/TrainTrackSingup.jsx";
 
-// Wrapper para usar useLocation fora do <BrowserRouter>
 function AppContent() {
   const location = useLocation();
-  const isLoginPage = location.pathname === "/login";
+  const isAuthPage =
+    location.pathname === "/login" || location.pathname === "/cadastro";
 
   return (
     <div className="app-container">
-      {!isLoginPage && <Header />}
+      {!isAuthPage && <Header />}
       <main className="main-content">
         <Routes>
           <Route path="/home" element={<Home />} />
           <Route path="/adicionar" element={<AddWorkout />} />
           <Route path="/perfil" element={<Profile />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/cadastro" element={<SingUp />} />
         </Routes>
       </main>
-      {!isLoginPage && <Button label={"text"} />}
     </div>
   );
 }
