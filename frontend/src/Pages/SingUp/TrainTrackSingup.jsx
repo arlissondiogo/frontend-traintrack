@@ -72,7 +72,7 @@ const TrainTrackSignup = () => {
                 type="button"
                 onClick={() => setShowPassword(!showPassword)}
               >
-                {showPassword ? "🙈" : "👁️"}
+                {showPassword ? "🔒" : "👁️"}
               </button>
               <button
                 type="button"
@@ -93,7 +93,7 @@ const TrainTrackSignup = () => {
         </div>
         <div className="signup-illustration">
           <img
-            src="/api/placeholder/400/500"
+            src="/public/pic-singup.png"
             alt="TrainTrack Signup Illustration"
           />
         </div>

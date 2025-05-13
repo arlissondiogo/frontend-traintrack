@@ -7,11 +7,14 @@ import Profile from "./Pages/Profile/Profile.jsx";
 import Login from "./Pages/Login/TrainTrackLogin.jsx";
 import Button from "./components/Button/Button.jsx";
 import SingUp from "./Pages/SingUp/TrainTrackSingup.jsx";
+import ForgotPassword from "./Pages/ForgotPassword/ForgotPassword.jsx";
 
 function AppContent() {
   const location = useLocation();
   const isAuthPage =
-    location.pathname === "/login" || location.pathname === "/cadastro";
+    location.pathname === "/login" ||
+    location.pathname === "/cadastro" ||
+    location.pathname === "/recuperar-senha";
 
   return (
     <div className="app-container">
@@ -23,6 +26,7 @@ function AppContent() {
           <Route path="/perfil" element={<Profile />} />
           <Route path="/login" element={<Login />} />
           <Route path="/cadastro" element={<SingUp />} />
+          <Route path="/recuperar-senha" element={<ForgotPassword />} />
         </Routes>
       </main>
     </div>

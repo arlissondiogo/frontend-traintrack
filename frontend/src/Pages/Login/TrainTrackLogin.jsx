@@ -78,6 +78,9 @@ function TrainTrackLogin() {
           <p className="signup">
             Não tem uma conta? <a href="/cadastro">Registre-se agora</a>
           </p>
+          <p className="forgot-password">
+            Esqueceu sua senha? <a href="/recuperar-senha">Recuperar</a>
+          </p>
         </div>
       </div>
     </div>

@@ -57,7 +57,7 @@
 }
 
 .generate-password-btn {
-  background-color: #3498db;
+  background-color: #2ecc71;
   color: white;
   border: none;
   padding: 10px 15px;
@@ -67,7 +67,7 @@
 }
 
 .generate-password-btn:hover {
-  background-color: #2980b9;
+  background-color: #2ecc71;
 }
 
 .signup-btn {
@@ -92,13 +92,13 @@
 }
 
 .login-link a {
-  color: #3498db;
+  color: #2ecc71;
   text-decoration: none;
 }
 
 .signup-illustration {
   flex: 1;
-  background-color: #e8f4f8;
+  background-color: #ffffff;
   display: flex;
   justify-content: center;
   align-items: center;
