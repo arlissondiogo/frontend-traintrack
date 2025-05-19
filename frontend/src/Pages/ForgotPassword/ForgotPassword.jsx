@@ -26,7 +26,7 @@ const ForgotPassword = () => {
   };
 
   const handleVoltarLogin = () => {
-    navigate("/login"); // Redireciona para /login
+    navigate("/login");
   };
 
   return (
@@ -92,7 +92,7 @@ const ForgotPassword = () => {
 
         <div className="right-section">
           <img
-            src="/public/forgot-pass.png"
+            src="/forgot-pass.png"
             alt="Person exercising"
             className="recovery-image"
           />

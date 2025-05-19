@@ -19,7 +19,7 @@ const TrainTrackSignup = () => {
 
     // Bloqueia botão por 2 segundos
     setDisableGenerate(true);
-    setTimeout(() => setDisableGenerate(false), 2000);
+    setTimeout(() => setDisableGenerate(false), 20000);
   };
 
   useEffect(() => {
@@ -92,10 +92,7 @@ const TrainTrackSignup = () => {
           </div>
         </div>
         <div className="signup-illustration">
-          <img
-            src="/public/pic-singup.png"
-            alt="TrainTrack Signup Illustration"
-          />
+          <img src="/pic-singup.png" alt="TrainTrack Signup Illustration" />
         </div>
       </div>
     </div>
