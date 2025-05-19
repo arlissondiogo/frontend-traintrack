@@ -1,37 +1,45 @@
 import React from "react";
 import "./Header.css";
-import NavItem from "../NavItem/NavItem";
 import { Home, PlusCircle, User, LogOut } from "lucide-react";
+import { Link } from "react-router-dom"; // Importe o Link
 
 const Header = () => {
   return (
     <header className="header">
-      <div className="header-top">
-        <div className="header-inner">
-          <div className="logo-container">
-            <img src="/logo.png" alt="Logo" className="logo" />
-            <h1 className="brand">TrainTrack</h1>
-          </div>
+      <div className="header-inner">
+        <div className="logo-container">
+          <img src="/logo.png" alt="Logo" className="logo" />
+          <h1 className="brand">TrainTrack</h1>
         </div>
+        <nav className="nav-bar">
+          <ul className="nav-list">
+            <li className="nav-item">
+              <Link to="/home" className="nav-link">
+                <Home size={16} className="nav-icon" />
+                <span className="nav-text">Início</span>
+              </Link>
+            </li>
+            <li className="nav-item">
+              <Link to="/adicionar" className="nav-link">
+                <PlusCircle size={16} className="nav-icon" />
+                <span className="nav-text">Adicionar treino</span>
+              </Link>
+            </li>
+            <li className="nav-item">
+              <Link to="/profile" className="nav-link">
+                <User size={16} className="nav-icon" />
+                <span className="nav-text">Perfil e configurações</span>
+              </Link>
+            </li>
+            <li className="nav-item">
+              <Link to="/login" className="nav-link">
+                <LogOut size={16} className="nav-icon" />
+                <span className="nav-text">Sair</span>
+              </Link>
+            </li>
+          </ul>
+        </nav>
       </div>
-      <nav className="nav-bar">
-        <div className="header-inner">
-          <div className="nav-content">
-            <NavItem icon={<Home size={16} />} text="Início" to="/home" />
-            <NavItem
-              icon={<PlusCircle size={16} />}
-              text="Adicionar treino"
-              to="/addWorkout"
-            />
-            <NavItem
-              icon={<User size={16} />}
-              text="Perfil e configurações"
-              to="/profile"
-            />
-            <NavItem icon={<LogOut size={16} />} text="Sair" to="/login" />
-          </div>
-        </div>
-      </nav>
     </header>
   );
 };

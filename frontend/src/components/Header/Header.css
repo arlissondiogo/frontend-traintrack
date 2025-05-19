@@ -1,24 +1,15 @@
 .header {
-  width: 100%;
-}
-
-.header-top {
-  background-color: white;
-  width: 100%;
-}
-
-.nav-bar {
-  background-color: white;
-  width: 100%;
-  border-top: 1px solid #eee;
+  background-color: #f8f9fa; /* Light grey background */
+  padding: 15px 20px;
+  border-bottom: 1px solid #e9ecef; /* Light border */
 }
 
 .header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* Space out logo and nav */
   max-width: 1200px;
   margin: 0 auto;
-  padding: 10px 20px;
-  display: flex;
-  justify-content: center;
 }
 
 .logo-container {
@@ -27,20 +18,52 @@
 }
 
 .logo {
-  height: 60px;
+  height: 30px; /* Adjust logo size */
   margin-right: 10px;
 }
 
 .brand {
-  font-size: 24px;
+  font-size: 20px; /* Adjust brand font size */
   font-weight: bold;
-  color: #030303;
-  display: flex;
-  align-items: center; /* Centraliza verticalmente */
-  justify-content: center; /* Centraliza horizontalmente */
+  color: #28a745; /* Green color similar to the image */
 }
 
-.nav-content {
+.nav-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
   display: flex;
-  gap: 30px;
+  gap: 25px; /* Space between navigation items */
+}
+
+.nav-item {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  color: #495057; /* Dark grey text */
+  transition: color 0.3s ease;
+}
+
+.nav-item:hover {
+  color: #28a745; /* Green on hover */
+}
+
+.nav-icon {
+  margin-right: 5px;
+}
+
+.nav-text {
+  font-size: 16px;
+}
+
+.nav-link {
+  display: flex;
+  align-items: center;
+  color: inherit; /* Herda a cor do .nav-item */
+  text-decoration: none; /* Remove o sublinhado padrão do link */
+  transition: color 0.3s ease; /* Mantém a transição de cor */
+}
+
+.nav-item:hover .nav-link {
+  color: #28a745; /* Garante que o link também mude de cor no hover do item */
 }
