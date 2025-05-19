@@ -1,0 +1,121 @@
+.profile-page {
+  font-family: sans-serif;
+  background-color: #fff;
+  min-height: 100vh;
+}
+
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.logo-container {
+  display: flex;
+  align-items: center;
+}
+
+.logo {
+  height: 40px;
+  margin-right: 10px;
+}
+
+.brand {
+  font-size: 24px;
+  font-weight: bold;
+  color: #28a745;
+}
+
+.nav-list {
+  list-style: none;
+  display: flex;
+  gap: 25px;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-item .nav-link {
+  text-decoration: none;
+  color: #495057;
+  font-size: 16px;
+  transition: color 0.3s ease;
+}
+
+.nav-item:hover .nav-link {
+  color: #28a745;
+}
+
+.profile-main {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  padding: 40px 20px;
+}
+
+.info-box,
+.actions-box {
+  background-color: #f2f2f2;
+  padding: 25px;
+  border-radius: 10px;
+  width: 300px;
+}
+
+.user-info {
+  background-color: #c2ccc1;
+  padding: 15px;
+  border-radius: 10px;
+  margin-bottom: 15px;
+}
+
+.metrics {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.metric {
+  flex: 1 1 45%;
+  padding: 10px;
+  border-radius: 10px;
+  text-align: center;
+  font-weight: bold;
+}
+
+.metric.green {
+  background-color: #c5f1c8;
+  color: #333;
+}
+
+.metric.dark {
+  background-color: #444;
+  color: #fff;
+  flex: 1 1 100%;
+}
+
+.btn {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-radius: 20px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.btn.grey {
+  background-color: #ddd;
+}
+
+.btn.red {
+  background-color: #b5281f;
+  color: #fff;
+}
+
+.add-button:hover {
+  background-color: #1b5e20;
+}
