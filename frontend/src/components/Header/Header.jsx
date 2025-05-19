@@ -15,7 +15,7 @@ const Header = () => {
           <ul className="nav-list">
             <li className="nav-item">
               <Link to="/home" className="nav-link">
-                <Home size={16} className="nav-icon" />
+                <Home size={25} className="nav-icon" />
                 <span className="nav-text">Início</span>
               </Link>
             </li>
@@ -26,7 +26,7 @@ const Header = () => {
               </Link>
             </li>
             <li className="nav-item">
-              <Link to="/profile" className="nav-link">
+              <Link to="/perfil" className="nav-link">
                 <User size={16} className="nav-icon" />
                 <span className="nav-text">Perfil e configurações</span>
               </Link>
