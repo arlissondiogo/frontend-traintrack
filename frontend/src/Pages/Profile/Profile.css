@@ -1,55 +1,14 @@
 .profile-page {
-  font-family: sans-serif;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   background-color: #fff;
   min-height: 100vh;
-}
-
-.header-inner {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-.logo-container {
-  display: flex;
-  align-items: center;
-}
-
-.logo {
-  height: 40px;
-  margin-right: 10px;
-}
-
-.brand {
-  font-size: 24px;
-  font-weight: bold;
-  color: #28a745;
-}
-
-.nav-list {
-  list-style: none;
-  display: flex;
-  gap: 25px;
-  margin: 0;
-  padding: 0;
-}
-
-.nav-item .nav-link {
-  text-decoration: none;
-  color: #495057;
-  font-size: 16px;
-  transition: color 0.3s ease;
-}
-
-.nav-item:hover .nav-link {
-  color: #28a745;
+  padding: 0 20px;
 }
 
 .profile-main {
   display: flex;
   justify-content: center;
+  flex-wrap: wrap;
   gap: 30px;
   padding: 40px 20px;
 }
@@ -58,15 +17,18 @@
 .actions-box {
   background-color: #f2f2f2;
   padding: 25px;
-  border-radius: 10px;
-  width: 300px;
+  border-radius: 16px;
+  width: 100%;
+  max-width: 340px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
 }
 
 .user-info {
   background-color: #c2ccc1;
   padding: 15px;
-  border-radius: 10px;
-  margin-bottom: 15px;
+  border-radius: 12px;
+  margin-bottom: 20px;
+  font-size: 14px;
 }
 
 .metrics {
@@ -82,6 +44,7 @@
   border-radius: 10px;
   text-align: center;
   font-weight: bold;
+  font-size: 14px;
 }
 
 .metric.green {
@@ -90,7 +53,7 @@
 }
 
 .metric.dark {
-  background-color: #444;
+  background-color: #1f2937;
   color: #fff;
   flex: 1 1 100%;
 }
@@ -98,17 +61,23 @@
 .btn {
   display: block;
   width: 100%;
-  padding: 10px;
+  padding: 12px;
   border: none;
   border-radius: 20px;
   font-weight: bold;
-  margin-bottom: 10px;
+  margin-bottom: 12px;
   cursor: pointer;
   font-size: 14px;
+  transition: background-color 0.3s ease;
 }
 
 .btn.grey {
   background-color: #ddd;
+  color: #111;
+}
+
+.btn.grey:hover {
+  background-color: #ccc;
 }
 
 .btn.red {
@@ -116,6 +85,18 @@
   color: #fff;
 }
 
+.btn.red:hover {
+  background-color: #a1221b;
+}
+
 .add-button:hover {
   background-color: #1b5e20;
+}
+
+/* Responsivo (opcional) */
+@media (max-width: 768px) {
+  .profile-main {
+    flex-direction: column;
+    align-items: center;
+  }
 }
