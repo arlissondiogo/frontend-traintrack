@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom"; // <-- Importa o hook
 import "./Profile.css";
-import DeleteAccountModal from "/src/components/DeleteAccount/DeleteAccountModal.jsx";
+import DeleteAccountModal from "../../components/DeleteAccountModal/DeleteAccountModal.jsx";
 
 export default function Profile() {
   const [isModalOpen, setIsModalOpen] = useState(false);

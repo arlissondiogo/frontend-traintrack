@@ -1,4 +1,3 @@
-import React from "react";
 import "./DeleteAccountModal.css";
 
 const DeleteAccountModal = ({ isOpen, onClose, onConfirm }) => {

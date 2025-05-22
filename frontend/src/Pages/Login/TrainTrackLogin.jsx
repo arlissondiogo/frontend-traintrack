@@ -1,15 +1,35 @@
 import React, { useState } from "react";
 import "./TrainTrackLogin.css";
+import { useNavigate } from "react-router-dom";
 
 function TrainTrackLogin() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    if (email && password) {
-      alert("Login attempt with: " + email);
-      // Em uma aplicação real, você faria a autenticação com um servidor aqui
+
+    try {
+      const res = await fetch("http://localhost:5000/api/user/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email, senha: password }),
+      });
+
+      const data = await res.json();
+
+      if (!res.ok) {
+        alert(data.erro || "Erro no login.");
+        return;
+      }
+
+      localStorage.setItem("token", data.token);
+      navigate("/perfil"); // depois vou trocar pra home. como eu tava testando eu deixei assim
+    } catch {
+      alert("Erro ao conectar com o servidor.");
     }
   };
 
