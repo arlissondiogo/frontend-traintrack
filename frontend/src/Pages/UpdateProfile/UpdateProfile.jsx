@@ -20,7 +20,7 @@ export default function UpdateProfile() {
 
   const handleSave = () => {
     console.log("Dados atualizados:", formData);
-    navigate("/profile"); 
+    navigate("/perfil"); 
   };
 
   return (
