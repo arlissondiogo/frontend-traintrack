@@ -8,6 +8,7 @@ import Login from "./Pages/Login/TrainTrackLogin.jsx";
 import Button from "./components/Button/Button.jsx";
 import SingUp from "./Pages/SingUp/TrainTrackSingup.jsx";
 import ForgotPassword from "./Pages/ForgotPassword/ForgotPassword.jsx";
+import UpdateUser from './Pages/UpdateProfile/UpdateProfile.jsx'
 
 function AppContent() {
   const location = useLocation();
@@ -27,6 +28,7 @@ function AppContent() {
           <Route path="/login" element={<Login />} />
           <Route path="/cadastro" element={<SingUp />} />
           <Route path="/recuperar-senha" element={<ForgotPassword />} />
+          <Route path="/editar-user" element={<UpdateUser/>} />
         </Routes>
       </main>
     </div>

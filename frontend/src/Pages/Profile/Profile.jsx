@@ -54,7 +54,9 @@ export default function Profile() {
         </div>
 
         <div className="actions-box">
-          <button className="btn grey">Editar informações</button>
+          <button className="btn grey" onClick={() => navigate("/editar-user")}>
+            Editar informações
+          </button>
           <button className="btn grey">Visualizar histórico de treino</button>
           <button className="btn red" onClick={() => setIsModalOpen(true)}>
             Deletar conta
