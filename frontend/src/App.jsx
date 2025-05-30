@@ -5,15 +5,16 @@ import Home from "./Pages/Home/Home.jsx";
 import AddWorkout from "./Pages/AddWorkout/AddWorkout.jsx";
 import Profile from "./Pages/Profile/Profile.jsx";
 import Login from "./Pages/Login/TrainTrackLogin.jsx";
-import Button from "./components/Button/Button.jsx";
 import SingUp from "./Pages/SingUp/TrainTrackSingup.jsx";
 import ForgotPassword from "./Pages/ForgotPassword/ForgotPassword.jsx";
+import ResetPassword from "./Pages/ResetPassword/ResetPassword.jsx";
 
 function AppContent() {
   const location = useLocation();
   const isAuthPage =
     location.pathname === "/login" ||
     location.pathname === "/cadastro" ||
+    location.pathname === "/reset-password" ||
     location.pathname === "/recuperar-senha";
 
   return (
@@ -27,6 +28,7 @@ function AppContent() {
           <Route path="/login" element={<Login />} />
           <Route path="/cadastro" element={<SingUp />} />
           <Route path="/recuperar-senha" element={<ForgotPassword />} />
+          <Route path="/reset-password" element={<ResetPassword />} />
         </Routes>
       </main>
     </div>

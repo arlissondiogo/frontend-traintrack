@@ -10,7 +10,7 @@ Repositório para desenvolvimento do projeto **Traintrack**.
 
 ```bash
 # Clone o repositório
-git clone https://github.com/arlissondiogo/frontend-traintrack
+git clone https://github.com/arlissondiogo/frontend-traintrack.git
 
 # Acesse a pasta do projeto
 cd Traintrack/frontend
