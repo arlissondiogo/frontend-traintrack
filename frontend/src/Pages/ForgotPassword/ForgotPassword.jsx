@@ -1,44 +1,45 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom"; // Importa o hook
+import { useNavigate } from "react-router-dom";
 import "./ForgotPassword.css";
 
 const ForgotPassword = () => {
   const [email, setEmail] = useState("");
-  const [senha, setSenha] = useState("");
-  const navigate = useNavigate(); // Instancia o hook
+  const navigate = useNavigate();
 
-  const handleEmailChange = (e) => {
-    setEmail(e.target.value);
+  const handleEmailChange = (e) => setEmail(e.target.value);
+
+  const handleEnviarEmail = async () => {
+    try {
+      const response = await fetch(
+        `http://localhost:5000/api/user/forgot-password`,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ email }),
+        }
+      );
+
+      const data = await response.json();
+
+      if (response.ok) {
+        alert(data.mensagem);
+      } else {
+        alert(data.erro);
+      }
+    } catch (error) {
+      console.error("Erro ao enviar o e-mail:", error);
+      alert("Erro ao enviar o e-mail de recuperação.");
+    }
   };
 
-  const handleSenhaChange = (e) => {
-    setSenha(e.target.value);
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // Handle form submission logic here
-  };
-
-  const handleEnviarEmail = () => {
-    // Logic for sending recovery email
-    console.log("Enviando email para:", email);
-  };
-
-  const handleVoltarLogin = () => {
-    navigate("/login");
-  };
+  const handleVoltarLogin = () => navigate("/login");
 
   return (
     <div className="recovery-container">
       <div className="recovery-content">
         <div className="left-section">
           <div className="logo-container">
-            <img
-              src="/public/logo.png"
-              alt="TrainTrack Logo"
-              className="logo"
-            />
+            <img src="/logo.png" alt="TrainTrack Logo" className="logo" />
             <h1 className="logo-text">TrainTrack</h1>
           </div>
 
@@ -53,7 +54,7 @@ const ForgotPassword = () => {
 
           <h2 className="recovery-title">Recuperar senha</h2>
 
-          <form onSubmit={handleSubmit} className="recovery-form">
+          <form onSubmit={(e) => e.preventDefault()} className="recovery-form">
             <div className="form-group">
               <label htmlFor="email">Email:</label>
               <input
@@ -62,6 +63,7 @@ const ForgotPassword = () => {
                 value={email}
                 onChange={handleEmailChange}
                 className="form-input"
+                required
               />
             </div>
 
@@ -71,21 +73,6 @@ const ForgotPassword = () => {
               onClick={handleEnviarEmail}
             >
               Enviar e-mail
-            </button>
-
-            <div className="form-group">
-              <label htmlFor="senha">Senha:</label>
-              <input
-                type="password"
-                id="senha"
-                value={senha}
-                onChange={handleSenhaChange}
-                className="form-input"
-              />
-            </div>
-
-            <button type="submit" className="submit-button">
-              Entrar
             </button>
           </form>
         </div>
