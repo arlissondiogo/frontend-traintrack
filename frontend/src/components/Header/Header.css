@@ -1,13 +1,15 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap');
+
 .header {
-  background-color: #f8f9fa; /* Light grey background */
-  padding: 15px 20px;
-  border-bottom: 1px solid #e9ecef; /* Light border */
+  background-color: #f8f9fa;
+  padding: 10px 20px; /* Mantemos mais compacto */
+  border-bottom: 1px solid #e9ecef;
 }
 
 .header-inner {
   display: flex;
   align-items: center;
-  justify-content: space-between; /* Space out logo and nav */
+  justify-content: space-between;
   max-width: 1200px;
   margin: 0 auto;
 }
@@ -15,37 +17,64 @@
 .logo-container {
   display: flex;
   align-items: center;
+  gap: 10px; /* Espaço entre imagem e texto */
+  /* REMOVIDO justify-content para não centralizar todo o conteúdo */
+  /* justify-content: center; */
 }
 
-.logo {
-  height: 30px; /* Adjust logo size */
-  margin-right: 10px;
+.logo-container a img {
+  height: 100px; /* Mantém o tamanho */
+  width: auto;
+  display: block; /* Remove espaçamento inline padrão */
+  margin: 0; /* Remove margens */
+  vertical-align: middle; /* Garante alinhamento vertical */
 }
 
 .brand {
-  font-size: 20px; /* Adjust brand font size */
-  font-weight: bold;
-  color: #28a745; /* Green color similar to the image */
+  font-family: 'Poppins', sans-serif;
+  font-size: 32px;
+  font-weight: 600;
+  color: #28a745;
+  margin-left: 5px;
+  line-height: normal;
+}
+
+.nav-bar {
+  display: flex;
+  align-items: center; /* Alinha verticalmente os botões */
 }
 
 .nav-list {
   list-style: none;
-  padding: 0;
-  margin: 0;
   display: flex;
-  gap: 25px; /* Space between navigation items */
+  gap: 15px;
+  margin: 0;
+  padding: 0;
 }
 
 .nav-item {
   display: flex;
-  align-items: center;
-  cursor: pointer;
-  color: #495057; /* Dark grey text */
-  transition: color 0.3s ease;
 }
 
-.nav-item:hover {
-  color: #28a745; /* Green on hover */
+.nav-link {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  text-decoration: none;
+  color: #495057;
+  transition: all 0.3s ease;
+  
+  background-color: #ffffff;
+  padding: 8px 12px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.nav-link:hover,
+.nav-link.active {
+  color: #ffffff;
+  background-color: #28a745;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
 }
 
 .nav-icon {
@@ -56,14 +85,39 @@
   font-size: 16px;
 }
 
-.nav-link {
-  display: flex;
-  align-items: center;
-  color: inherit; /* Herda a cor do .nav-item */
-  text-decoration: none; /* Remove o sublinhado padrão do link */
-  transition: color 0.3s ease; /* Mantém a transição de cor */
+.menu-btn {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
 }
 
-.nav-item:hover .nav-link {
-  color: #28a745; /* Garante que o link também mude de cor no hover do item */
+@media (max-width: 768px) {
+  .nav-bar {
+    position: absolute;
+    top: 70px; /* Reduzido para acompanhar a header compacta */
+    left: 0;
+    right: 0;
+    background-color: #f8f9fa;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    padding: 15px 0;
+    transform: translateY(-100%);
+    transition: transform 0.3s ease-in-out;
+    z-index: 1000;
+  }
+
+  .nav-bar.open {
+    transform: translateY(0);
+  }
+
+  .nav-list {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .menu-btn {
+    display: block;
+  }
 }
