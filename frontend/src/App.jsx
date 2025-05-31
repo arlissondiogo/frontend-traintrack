@@ -7,6 +7,7 @@ import Profile from "./Pages/Profile/Profile.jsx";
 import Login from "./Pages/Login/TrainTrackLogin.jsx";
 import SingUp from "./Pages/SingUp/TrainTrackSingup.jsx";
 import ForgotPassword from "./Pages/ForgotPassword/ForgotPassword.jsx";
+import UpdateUser from './Pages/UpdateProfile/UpdateProfile.jsx'
 import ResetPassword from "./Pages/ResetPassword/ResetPassword.jsx";
 
 function AppContent() {
@@ -28,6 +29,7 @@ function AppContent() {
           <Route path="/login" element={<Login />} />
           <Route path="/cadastro" element={<SingUp />} />
           <Route path="/recuperar-senha" element={<ForgotPassword />} />
+          <Route path="/editar-user" element={<UpdateUser/>} />
           <Route path="/reset-password" element={<ResetPassword />} />
         </Routes>
       </main>
