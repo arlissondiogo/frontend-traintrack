@@ -1,46 +1,38 @@
 .update-profile-page {
-  padding: 2rem;
   display: flex;
   justify-content: center;
-  align-items: flex-start;
-  min-height: 100vh;
-  background-color: #fff;
+  gap: 40px; /* espaço entre as colunas */
+  padding: 20px;
 }
 
 .info-form-container {
   display: flex;
-  gap: 2rem;
+  gap: 40px;
 }
 
-.info-box,
-.form-box {
-  background-color: #f0f0f0;
-  padding: 1.5rem;
-  border-radius: 12px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-  min-width: 250px;
-}
-
-.user-info p {
-  margin: 0.5rem 0;
+.info-box {
+  background-color: #f5f5f5;
+  padding: 20px;
+  border-radius: 10px;
+  width: 250px; /* ajuste a largura aqui */
 }
 
 .metrics {
   display: flex;
-  gap: 1rem;
-  margin-top: 1rem;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 20px;
 }
 
 .metric {
-  padding: 0.8rem;
+  flex: 1 1 100px; /* elementos menores */
+  padding: 10px;
   border-radius: 8px;
   text-align: center;
-  flex: 1;
 }
 
 .metric.green {
-  background-color: #d6f5d6;
-  color: #2d6a2d;
+  background-color: #c8f7c5;
 }
 
 .metric.dark {
@@ -48,27 +40,19 @@
   color: #fff;
 }
 
-.form-box input {
-  width: 100%;
-  padding: 0.6rem;
-  margin-bottom: 1rem;
-  border: none;
-  border-radius: 8px;
-  background-color: #ddd;
+.form-box {
+  background-color: #f5f5f5;
+  padding: 20px;
+  border-radius: 10px;
+  width: 300px; /* mantenha essa largura */
 }
 
-.save-btn {
-  width: 100%;
-  padding: 0.8rem;
-  background-color: #008b4c;
-  color: #fff;
+.btn.save-btn {
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #008000;
+  color: white;
   border: none;
-  border-radius: 999px;
-  font-weight: bold;
+  border-radius: 20px;
   cursor: pointer;
-  transition: background 0.3s ease;
-}
-
-.save-btn:hover {
-  background-color: #00663a;
 }
