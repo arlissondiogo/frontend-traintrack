@@ -15,6 +15,15 @@ export default function UpdateProfile() {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
+
+    
+    if (name === "nome") {
+      
+      const onlyLetters = value.replace(/[^A-Za-zÀ-ÖØ-öø-ÿ\s]/g, "");
+      setFormData((prev) => ({ ...prev, nome: onlyLetters }));
+      return;
+    }
+
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
@@ -47,7 +56,7 @@ export default function UpdateProfile() {
             </div>
             <div className="metric dark">
               <p>IMC</p>
-              <p>{/*aqui vai algo*/ "5000"}</p>
+              <p>{"5000"}</p>
             </div>
           </div>
         </div>
@@ -58,16 +67,18 @@ export default function UpdateProfile() {
           <input name="nome" value={formData.nome} onChange={handleChange} />
 
           <label>Idade:</label>
-          <input name="idade" value={formData.idade} onChange={handleChange} />
+          <input name="idade" type="number" min={1} value={formData.idade} onChange={handleChange} />
 
           <label>Peso:</label>
-          <input name="peso" value={formData.peso} onChange={handleChange} />
+          <input name="peso" type="number" min={1} value={formData.peso} onChange={handleChange} />
 
-          <label>Altura:</label>
+          <label>Altura (cm):</label>
           <input
             name="altura"
             value={formData.altura}
             onChange={handleChange}
+            type="number"
+            min={1}
           />
 
           <button className="btn save-btn" onClick={handleSave}>
