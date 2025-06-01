@@ -1,7 +1,7 @@
 .update-profile-page {
   display: flex;
   justify-content: center;
-  gap: 40px; /* espaço entre as colunas */
+  gap: 40px; 
   padding: 20px;
 }
 
@@ -14,7 +14,7 @@
   background-color: #f5f5f5;
   padding: 20px;
   border-radius: 10px;
-  width: 250px; /* ajuste a largura aqui */
+  width: 250px; 
 }
 
 .metrics {
@@ -25,7 +25,7 @@
 }
 
 .metric {
-  flex: 1 1 100px; /* elementos menores */
+  flex: 1 1 100px; 
   padding: 10px;
   border-radius: 8px;
   text-align: center;
@@ -44,7 +44,7 @@
   background-color: #f5f5f5;
   padding: 20px;
   border-radius: 10px;
-  width: 300px; /* mantenha essa largura */
+  width: 300px; 
 }
 
 .btn.save-btn {

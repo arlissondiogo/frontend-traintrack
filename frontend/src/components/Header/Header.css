@@ -2,7 +2,7 @@
 
 .header {
   background-color: #f8f9fa;
-  padding: 10px 20px; /* Mantemos mais compacto */
+  padding: 10px 20px;
   border-bottom: 1px solid #e9ecef;
 }
 
@@ -17,17 +17,15 @@
 .logo-container {
   display: flex;
   align-items: center;
-  gap: 10px; /* Espaço entre imagem e texto */
-  /* REMOVIDO justify-content para não centralizar todo o conteúdo */
-  /* justify-content: center; */
+  gap: 10px; 
 }
 
 .logo-container a img {
-  height: 100px; /* Mantém o tamanho */
+  height: 100px; 
   width: auto;
-  display: block; /* Remove espaçamento inline padrão */
-  margin: 0; /* Remove margens */
-  vertical-align: middle; /* Garante alinhamento vertical */
+  display: block; 
+  margin: 0; 
+  vertical-align: middle;
 }
 
 .brand {
@@ -41,7 +39,7 @@
 
 .nav-bar {
   display: flex;
-  align-items: center; /* Alinha verticalmente os botões */
+  align-items: center; 
 }
 
 .nav-list {
@@ -95,7 +93,7 @@
 @media (max-width: 768px) {
   .nav-bar {
     position: absolute;
-    top: 70px; /* Reduzido para acompanhar a header compacta */
+    top: 70px; 
     left: 0;
     right: 0;
     background-color: #f8f9fa;
