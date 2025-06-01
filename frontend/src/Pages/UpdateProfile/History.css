@@ -65,3 +65,60 @@
   cursor: pointer;
   font-size: 1rem;
 }
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modal {
+  background: #00a859;
+  padding: 40px 30px;
+  border-radius: 40px;
+  text-align: center;
+  color: white;
+  width: 90%;
+  max-width: 400px;
+  font-size: 1.2rem;
+}
+
+.modal-text {
+  margin-bottom: 25px;
+  font-weight: bold;
+}
+
+.modal-buttons {
+  display: flex;
+  justify-content: space-around;
+  gap: 20px;
+}
+
+.modal-no {
+  background-color: #c0392b;
+  color: white;
+  border: none;
+  padding: 10px 30px;
+  border-radius: 20px;
+  font-weight: bold;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.modal-yes {
+  background-color: #2c2c2c;
+  color: white;
+  border: none;
+  padding: 10px 30px;
+  border-radius: 20px;
+  font-weight: bold;
+  cursor: pointer;
+  font-size: 1rem;
+}

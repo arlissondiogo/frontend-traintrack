@@ -18,9 +18,12 @@ export default function History() {
     },
   ]);
 
+  const [treinoParaDeletar, setTreinoParaDeletar] = useState(null);
+
   const handleDelete = (id) => {
     const novaLista = treinoHistorico.filter((treino) => treino.id !== id);
     setTreinoHistorico(novaLista);
+    setTreinoParaDeletar(null); // fecha o modal
   };
 
   return (
@@ -38,7 +41,7 @@ export default function History() {
           <div className="history-buttons">
             <button
               className="history-btn-delete"
-              onClick={() => handleDelete(treino.id)}
+              onClick={() => setTreinoParaDeletar(treino.id)}
             >
               Deletar
             </button>
@@ -46,6 +49,31 @@ export default function History() {
           </div>
         </div>
       ))}
+
+      {/* MODAL DE CONFIRMAÇÃO */}
+      {treinoParaDeletar !== null && (
+        <div className="modal-overlay">
+          <div className="modal">
+            <p className="modal-text">
+              Você tem certeza que deseja deletar seu treino?
+            </p>
+            <div className="modal-buttons">
+              <button
+                className="modal-no"
+                onClick={() => setTreinoParaDeletar(null)}
+              >
+                Não
+              </button>
+              <button
+                className="modal-yes"
+                onClick={() => handleDelete(treinoParaDeletar)}
+              >
+                Deletar
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
