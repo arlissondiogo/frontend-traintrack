@@ -7,8 +7,9 @@ import Profile from "./Pages/Profile/Profile.jsx";
 import Login from "./Pages/Login/TrainTrackLogin.jsx";
 import SingUp from "./Pages/SingUp/TrainTrackSingup.jsx";
 import ForgotPassword from "./Pages/ForgotPassword/ForgotPassword.jsx";
-import UpdateUser from './Pages/UpdateProfile/UpdateProfile.jsx'
+import UpdateUser from "./Pages/UpdateProfile/UpdateProfile.jsx";
 import ResetPassword from "./Pages/ResetPassword/ResetPassword.jsx";
+import History from "./Pages/UpdateProfile/History.jsx";
 
 function AppContent() {
   const location = useLocation();
@@ -29,8 +30,9 @@ function AppContent() {
           <Route path="/login" element={<Login />} />
           <Route path="/cadastro" element={<SingUp />} />
           <Route path="/recuperar-senha" element={<ForgotPassword />} />
-          <Route path="/editar-user" element={<UpdateUser/>} />
+          <Route path="/editar-user" element={<UpdateUser />} />
           <Route path="/reset-password" element={<ResetPassword />} />
+          <Route path="/historico" element={<History />} />
         </Routes>
       </main>
     </div>
