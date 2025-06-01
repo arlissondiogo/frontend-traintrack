@@ -1,0 +1,42 @@
+.home-container {
+  padding: 30px;
+  font-family: sans-serif;
+  color: #2e3d3f;
+}
+
+.dashboard-section {
+  display: flex;
+  gap: 20px;
+  margin-top: 20px;
+  flex-wrap: wrap;
+}
+
+.charts {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  flex: 1;
+}
+
+.chart-box {
+  background-color: #e4f7ec;
+  border-radius: 16px;
+  padding: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.recent-workouts {
+  flex: 1;
+  background-color: #e4f7ec;
+  padding: 20px;
+  border-radius: 16px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.treino-card {
+  background-color: #b6e3c6;
+  border-radius: 12px;
+  padding: 12px;
+  margin-bottom: 15px;
+  font-size: 0.95rem;
+}
