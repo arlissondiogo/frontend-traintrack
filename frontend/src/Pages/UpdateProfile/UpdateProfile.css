@@ -1,0 +1,58 @@
+.update-profile-page {
+  display: flex;
+  justify-content: center;
+  gap: 40px; 
+  padding: 20px;
+}
+
+.info-form-container {
+  display: flex;
+  gap: 40px;
+}
+
+.info-box {
+  background-color: #f5f5f5;
+  padding: 20px;
+  border-radius: 10px;
+  width: 250px; 
+}
+
+.metrics {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.metric {
+  flex: 1 1 100px; 
+  padding: 10px;
+  border-radius: 8px;
+  text-align: center;
+}
+
+.metric.green {
+  background-color: #c8f7c5;
+}
+
+.metric.dark {
+  background-color: #333;
+  color: #fff;
+}
+
+.form-box {
+  background-color: #f5f5f5;
+  padding: 20px;
+  border-radius: 10px;
+  width: 300px; 
+}
+
+.btn.save-btn {
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #008000;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+}

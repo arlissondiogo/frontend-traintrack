@@ -3,6 +3,7 @@ import Dashboard from "../../components/Dashboard/Dashboard";
 import "./Home.css";
 import { useNavigate } from "react-router-dom";
 
+
 const Home = () => {
   const [ultimosTreinos, setUltimosTreinos] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -18,7 +19,6 @@ const Home = () => {
       }
 
       try {
-        // Corrigir a URL da API - estava com 'list-workouts' mas deveria ser 'list-workout'
         const res = await fetch(
           "http://localhost:5000/api/workouts/list-workout?limit=5",
           {
@@ -96,7 +96,7 @@ const Home = () => {
                 )}
               </div>
             ))
-          )}
+          )} 
         </div>
       </div>
     </div>
