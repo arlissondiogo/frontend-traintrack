@@ -3,14 +3,14 @@ import Dashboard from "../../components/Dashboard/Dashboard";
 import "./Home.css";
 import { useNavigate } from "react-router-dom";
 
-
 const Home = () => {
   const [ultimosTreinos, setUltimosTreinos] = useState([]);
+  const [exerciciosDisponiveis, setExerciciosDisponiveis] = useState([]);
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
 
   useEffect(() => {
-    const fetchUltimosTreinos = async () => {
+    const fetchDados = async () => {
       const token = localStorage.getItem("token");
 
       if (!token) {
@@ -19,7 +19,7 @@ const Home = () => {
       }
 
       try {
-        const res = await fetch(
+        const resUltimosTreinos = await fetch(
           "http://localhost:5000/api/workouts/list-workout?limit=5",
           {
             headers: {
@@ -28,20 +28,47 @@ const Home = () => {
           }
         );
 
-        if (!res.ok) {
-          if (res.status === 401) {
+        if (!resUltimosTreinos.ok) {
+          if (resUltimosTreinos.status === 401) {
             console.error("Token inválido ou expirado.");
-            localStorage.removeItem("token"); // Limpar token inválido
+            localStorage.removeItem("token");
             navigate("/login");
           } else {
-            console.error("Erro ao buscar últimos treinos:", res.status);
+            console.error(
+              "Erro ao buscar últimos treinos:",
+              resUltimosTreinos.status
+            );
           }
           return;
         }
 
-        const data = await res.json();
-        console.log("Dados recebidos da API:", data);
-        setUltimosTreinos(data.slice(0, 5));
+        const dataUltimosTreinos = await resUltimosTreinos.json();
+        console.log("Dados recebidos da API:", dataUltimosTreinos);
+        setUltimosTreinos(dataUltimosTreinos.slice(0, 5));
+
+        const resExercicios = await fetch(
+          "http://localhost:5000/api/workouts/list-workout",
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+
+        if (resExercicios.ok) {
+          const dataExercicios = await resExercicios.json();
+
+          const exerciciosUnicos = [
+            ...new Set(
+              dataExercicios
+                .map((treino) => treino.nomeExercicio)
+                .filter((nome) => nome && nome.trim() !== "")
+            ),
+          ];
+
+          console.log("Exercícios disponíveis:", exerciciosUnicos);
+          setExerciciosDisponiveis(exerciciosUnicos);
+        }
       } catch (error) {
         console.error("Erro de conexão:", error);
       } finally {
@@ -49,7 +76,7 @@ const Home = () => {
       }
     };
 
-    fetchUltimosTreinos();
+    fetchDados();
   }, [navigate]);
 
   if (loading) {
@@ -66,7 +93,7 @@ const Home = () => {
       <div className="dashboard-section">
         <div className="charts">
           <div className="chart-box">
-            <Dashboard />
+            <Dashboard exerciciosDisponiveis={exerciciosDisponiveis} />
           </div>
         </div>
         <div className="recent-workouts">
@@ -96,7 +123,7 @@ const Home = () => {
                 )}
               </div>
             ))
-          )} 
+          )}
         </div>
       </div>
     </div>

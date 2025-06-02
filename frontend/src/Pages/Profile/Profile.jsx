@@ -1,24 +1,42 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom"; // <-- Importa o hook
+import { useNavigate } from "react-router-dom";
 import "./Profile.css";
 import DeleteAccountModal from "../../components/DeleteAccountModal/DeleteAccountModal.jsx";
 
 export default function Profile() {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const navigate = useNavigate(); // <-- Inicializa o hook
+  const navigate = useNavigate();
 
-  const handleDelete = () => {
-    // Aqui faz a chamada para deletar a conta na API
-    console.log("Conta deletada");
+  const handleDelete = async () => {
+    const token = localStorage.getItem("token");
+    const userId = JSON.parse(atob(token.split(".")[1])).id;
 
-    // Fecha o modal
-    setIsModalOpen(false);
+    try {
+      const response = await fetch(
+        `http://localhost:5000/api/user/deleteUsers/${userId}`,
+        {
+          method: "DELETE",
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
 
-    // Limpa dados de autenticação, se tiver
-    localStorage.removeItem("token");
+      const data = await response.json();
 
-    // Redireciona para a página de login
-    navigate("/login");
+      if (response.ok) {
+        console.log("Conta deletada com sucesso:", data);
+        localStorage.clear();
+        setIsModalOpen(false);
+        navigate("/login");
+      } else {
+        console.error("Erro na resposta da API:", response.status, data);
+        alert(data.erro || "Erro ao deletar conta");
+      }
+    } catch (error) {
+      console.error("Erro ao conectar com o servidor:", error);
+      alert("Erro ao deletar conta");
+    }
   };
 
   return (
@@ -36,7 +54,6 @@ export default function Profile() {
               <strong>e-mail:</strong> a@gmail.com
             </p>
           </div>
-
           <div className="metrics">
             <div className="metric green">
               <p>Altura</p>

@@ -4,7 +4,7 @@ import ProgressoChart from "../ProgressaoCharts/ProgressoChart";
 const Dashboard = () => {
   const [progresso, setProgresso] = useState([]);
   const [volume, setVolume] = useState([]);
-  const [exercicios, setExercicios] = useState([]);
+  const [exerciciosUsuario, setExerciciosUsuario] = useState([]);
   const [exercicioSelecionado, setExercicioSelecionado] = useState("");
   const [mesSelecionado, setMesSelecionado] = useState("");
   const [loading, setLoading] = useState(true);
@@ -39,23 +39,26 @@ const Dashboard = () => {
       }
     };
 
-    const fetchExercicios = async () => {
+    const fetchExerciciosUsuario = async () => {
       try {
         const res = await fetch(
-          `http://localhost:5000/api/workouts/exercicios`,
+          `http://localhost:5000/api/workouts/list-workout`,
           {
             headers: getAuthHeaders(),
           }
         );
         if (res.ok) {
           const data = await res.json();
-          setExercicios(data);
+          const exerciciosUnicos = [
+            ...new Set(data.map((treino) => treino.nomeExercicio)),
+          ];
+          setExerciciosUsuario(exerciciosUnicos);
         } else {
-          console.error("Erro ao buscar exercícios:", res.status);
+          console.error("Erro ao buscar treinos do usuário:", res.status);
         }
       } catch (error) {
-        console.error("Erro ao buscar exercícios:", error);
-        setError("Erro ao carregar lista de exercícios");
+        console.error("Erro ao buscar treinos do usuário:", error);
+        setError("Erro ao carregar exercícios do usuário");
       }
     };
 
@@ -88,7 +91,11 @@ const Dashboard = () => {
       setLoading(true);
       setError(null);
 
-      await Promise.all([fetchProgresso(), fetchVolume(), fetchExercicios()]);
+      await Promise.all([
+        fetchProgresso(),
+        fetchVolume(),
+        fetchExerciciosUsuario(),
+      ]);
 
       setLoading(false);
     };
@@ -124,7 +131,8 @@ const Dashboard = () => {
           style={{ marginRight: "20px", padding: "5px" }}
         >
           <option value="">Todos</option>
-          {exercicios.map((ex, i) => (
+          {}
+          {exerciciosUsuario.map((ex, i) => (
             <option key={i} value={ex}>
               {ex}
             </option>
