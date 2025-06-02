@@ -3,8 +3,8 @@ import { useSearchParams, useNavigate } from "react-router-dom";
 
 const ResetPassword = () => {
   const [searchParams] = useSearchParams();
-  const [novaSenha, setNovaSenha] = useState("");
-  const [mensagem, setMensagem] = useState("");
+  const [newPassword, setNewPassword] = useState("");
+  const [message, setMessage] = useState("");
   const navigate = useNavigate();
   const token = searchParams.get("token");
 
@@ -17,19 +17,19 @@ const ResetPassword = () => {
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ token, novaSenha }),
+          body: JSON.stringify({ token, novaSenha: newPassword }),
         }
       );
 
       const data = await response.json();
       if (response.ok) {
-        setMensagem("Senha redefinida com sucesso!");
+        setMessage("Senha redefinida com sucesso!");
         setTimeout(() => navigate("/login"), 2000);
       } else {
-        setMensagem(data.erro || "Erro ao redefinir senha.");
+        setMessage(data.erro || "Erro ao redefinir senha.");
       }
     } catch {
-      setMensagem("Erro ao conectar ao servidor.");
+      setMessage("Erro ao conectar ao servidor.");
     }
   };
 
@@ -43,9 +43,9 @@ const ResetPassword = () => {
               <label htmlFor="novaSenha">Nova Senha:</label>
               <input
                 type="password"
-                id="novaSenha"
-                value={novaSenha}
-                onChange={(e) => setNovaSenha(e.target.value)}
+                id="newPassword"
+                value={newPassword}
+                onChange={(e) => setNewPassword(e.target.value)}
                 className="form-input"
               />
             </div>
@@ -53,7 +53,7 @@ const ResetPassword = () => {
               Redefinir
             </button>
           </form>
-          {mensagem && <p>{mensagem}</p>}
+          {message && <p>{message}</p>}
         </div>
       </div>
     </div>

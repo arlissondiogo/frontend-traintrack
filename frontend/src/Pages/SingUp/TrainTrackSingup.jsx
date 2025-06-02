@@ -52,7 +52,7 @@ const TrainTrackSignup = () => {
       }
 
       alert(
-        `Usuário cadastrado com sucesso! Sua senha é: ${data.usuario.senha}`
+        `Usuário cadastrado com sucesso! Sua senha é: ${data.usuario.password}`
       );
 
       navigate("/login");

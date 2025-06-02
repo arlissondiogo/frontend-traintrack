@@ -8,7 +8,7 @@ const ForgotPassword = () => {
 
   const handleEmailChange = (e) => setEmail(e.target.value);
 
-  const handleEnviarEmail = async () => {
+  const handlSendToEmail = async () => {
     try {
       const response = await fetch(
         `http://localhost:5000/api/user/forgot-password`,
@@ -32,7 +32,7 @@ const ForgotPassword = () => {
     }
   };
 
-  const handleVoltarLogin = () => navigate("/login");
+  const handleBackLogin = () => navigate("/login");
 
   return (
     <div className="recovery-container">
@@ -45,7 +45,7 @@ const ForgotPassword = () => {
 
           <div
             className="back-link"
-            onClick={handleVoltarLogin}
+            onClick={handleBackLogin}
             style={{ cursor: "pointer" }}
           >
             <span className="back-arrow">&#8592;</span>
@@ -70,7 +70,7 @@ const ForgotPassword = () => {
             <button
               type="button"
               className="email-button"
-              onClick={handleEnviarEmail}
+              onClick={handlSendToEmail}
             >
               Enviar e-mail
             </button>

@@ -4,13 +4,13 @@ import "./Home.css";
 import { useNavigate } from "react-router-dom";
 
 const Home = () => {
-  const [ultimosTreinos, setUltimosTreinos] = useState([]);
-  const [exerciciosDisponiveis, setExerciciosDisponiveis] = useState([]);
+  const [lastTraining, setLastTraining] = useState([]);
+  const [exercisesAvailable, setexercisesAvailable] = useState([]);
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
 
   useEffect(() => {
-    const fetchDados = async () => {
+    const fetchData = async () => {
       const token = localStorage.getItem("token");
 
       if (!token) {
@@ -19,7 +19,7 @@ const Home = () => {
       }
 
       try {
-        const resUltimosTreinos = await fetch(
+        const resLastTrainings = await fetch(
           "http://localhost:5000/api/workouts/list-workout?limit=5",
           {
             headers: {
@@ -28,25 +28,25 @@ const Home = () => {
           }
         );
 
-        if (!resUltimosTreinos.ok) {
-          if (resUltimosTreinos.status === 401) {
+        if (!resLastTrainings.ok) {
+          if (resLastTrainings.status === 401) {
             console.error("Token inválido ou expirado.");
             localStorage.removeItem("token");
             navigate("/login");
           } else {
             console.error(
               "Erro ao buscar últimos treinos:",
-              resUltimosTreinos.status
+              resLastTrainings.status
             );
           }
           return;
         }
 
-        const dataUltimosTreinos = await resUltimosTreinos.json();
-        console.log("Dados recebidos da API:", dataUltimosTreinos);
-        setUltimosTreinos(dataUltimosTreinos.slice(0, 5));
+        const lastTrainingData = await resLastTrainings.json();
+        console.log("Dados recebidos da API:", lastTrainingData);
+        setLastTraining(lastTrainingData.slice(0, 5));
 
-        const resExercicios = await fetch(
+        const resExercises = await fetch(
           "http://localhost:5000/api/workouts/list-workout",
           {
             headers: {
@@ -55,19 +55,19 @@ const Home = () => {
           }
         );
 
-        if (resExercicios.ok) {
-          const dataExercicios = await resExercicios.json();
+        if (resExercises.ok) {
+          const dataExercises = await resExercises.json();
 
-          const exerciciosUnicos = [
+          const uniqueExercises = [
             ...new Set(
-              dataExercicios
-                .map((treino) => treino.nomeExercicio)
-                .filter((nome) => nome && nome.trim() !== "")
+              dataExercises
+                .map((training) => training.exerciseName)
+                .filter((name) => name && name.trim() !== "")
             ),
           ];
 
-          console.log("Exercícios disponíveis:", exerciciosUnicos);
-          setExerciciosDisponiveis(exerciciosUnicos);
+          console.log("Exercícios disponíveis:", uniqueExercises);
+          setexercisesAvailable(uniqueExercises);
         }
       } catch (error) {
         console.error("Erro de conexão:", error);
@@ -76,7 +76,7 @@ const Home = () => {
       }
     };
 
-    fetchDados();
+    fetchData();
   }, [navigate]);
 
   if (loading) {
@@ -93,32 +93,32 @@ const Home = () => {
       <div className="dashboard-section">
         <div className="charts">
           <div className="chart-box">
-            <Dashboard exerciciosDisponiveis={exerciciosDisponiveis} />
+            <Dashboard exercisesAvailable={exercisesAvailable} />
           </div>
         </div>
         <div className="recent-workouts">
           <h3>Últimos treinos adicionados</h3>
-          {ultimosTreinos.length === 0 ? (
+          {lastTraining.length === 0 ? (
             <p>Nenhum treino encontrado.</p>
           ) : (
-            ultimosTreinos.map((treino, idx) => (
-              <div key={treino._id || idx} className="treino-card">
+            lastTraining.map((training, idx) => (
+              <div key={training._id || idx} className="treino-card">
                 <div>
-                  <strong>Exercício:</strong> {treino.nomeExercicio}
+                  <strong>Exercício:</strong> {training.nomeExercicio}
                 </div>
                 <div>
-                  <strong>Séries e repetições:</strong> {treino.series || 0}x
-                  {treino.repeticoes || 0}
+                  <strong>Séries e repetições:</strong> {training.series || 0}x
+                  {training.repetitions || 0}
                 </div>
                 <div>
-                  <strong>Peso:</strong> {treino.carga || 0}kg
+                  <strong>Peso:</strong> {training.load || 0}kg
                 </div>
                 <div>
-                  <strong>Descanso:</strong> {treino.tempoDescanso || 0}s
+                  <strong>Descanso:</strong> {training.restTime || 0}s
                 </div>
-                {treino.tempoExecucao && (
+                {training.runTime && (
                   <div>
-                    <strong>Tempo de execução:</strong> {treino.tempoExecucao}s
+                    <strong>Tempo de execução:</strong> {training.runTime}
                   </div>
                 )}
               </div>

@@ -9,7 +9,7 @@
 }
 
 .modal-container {
-  background-color: #059669; /* verde */
+  background-color: #059669; 
   color: white;
   padding: 24px;
   border-radius: 12px;
@@ -30,7 +30,7 @@
 }
 
 .btn-cancel {
-  background-color: #b91c1c; /* vermelho */
+  background-color: #b91c1c; 
   color: white;
   padding: 8px 16px;
   border-radius: 8px;
@@ -39,7 +39,7 @@
 }
 
 .btn-confirm {
-  background-color: #1f2937; /* cinza escuro */
+  background-color: #1f2937; 
   color: white;
   padding: 8px 16px;
   border-radius: 8px;

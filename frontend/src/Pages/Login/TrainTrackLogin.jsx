@@ -27,7 +27,7 @@ function TrainTrackLogin() {
       }
 
       localStorage.setItem("token", data.token);
-      navigate("/perfil"); // depois vou trocar pra home. como eu tô testando eu deixei assim
+      navigate("/perfil"); 
     } catch {
       alert("Erro ao conectar com o servidor.");
     }
@@ -99,7 +99,7 @@ function TrainTrackLogin() {
             Não tem uma conta? <a href="/cadastro">Registre-se agora</a>
           </p>
           <p className="forgot-password">
-            <a href="/recuperar-senha">Esqueceu sua senha?</a>
+            <a href="/forget-password">Esqueceu sua senha?</a>
           </p>
         </div>
       </div>

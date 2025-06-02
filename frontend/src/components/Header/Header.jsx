@@ -33,7 +33,7 @@ const Header = () => {
               </NavLink>
             </li>
             <li className="nav-item">
-              <NavLink to="/adicionar" className="nav-link" aria-label="Adicionar treino">
+              <NavLink to="/add" className="nav-link" aria-label="Adicionar treino">
                 <PlusCircle size={20} className="nav-icon" />
                 <span className="nav-text">Adicionar treino</span>
               </NavLink>

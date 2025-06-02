@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
-import ProgressoChart from "../ProgressaoCharts/ProgressoChart";
+import ChartProgress from "../ProgressaoCharts/ProgressoChart";
 
 const Dashboard = () => {
-  const [progresso, setProgresso] = useState([]);
+  const [progress, setProgress] = useState([]);
   const [volume, setVolume] = useState([]);
-  const [exerciciosUsuario, setExerciciosUsuario] = useState([]);
-  const [exercicioSelecionado, setExercicioSelecionado] = useState("");
-  const [mesSelecionado, setMesSelecionado] = useState("");
+  const [userExercises, setUserExercises] = useState([]);
+  const [selectedExercise, setSelectedExercise] = useState("");
+  const [selectedMounth, setSelectedMounth] = useState("");
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -39,7 +39,7 @@ const Dashboard = () => {
       }
     };
 
-    const fetchExerciciosUsuario = async () => {
+    const fetchUserExercise = async () => {
       try {
         const res = await fetch(
           `http://localhost:5000/api/workouts/list-workout`,
@@ -50,9 +50,9 @@ const Dashboard = () => {
         if (res.ok) {
           const data = await res.json();
           const exerciciosUnicos = [
-            ...new Set(data.map((treino) => treino.nomeExercicio)),
+            ...new Set(data.map((treino) => treino.nameExercicio)),
           ];
-          setExerciciosUsuario(exerciciosUnicos);
+          setUserExercises(exerciciosUnicos);
         } else {
           console.error("Erro ao buscar treinos do usuário:", res.status);
         }
@@ -62,12 +62,12 @@ const Dashboard = () => {
       }
     };
 
-    const fetchProgresso = async () => {
+    const fetchProgress = async () => {
       try {
         const params = new URLSearchParams();
-        if (exercicioSelecionado)
-          params.append("exercicio", exercicioSelecionado);
-        if (mesSelecionado) params.append("mes", mesSelecionado);
+        if (selectedExercise)
+          params.append("exercicio", selectedExercise);
+        if (selectedMounth) params.append("mes", selectedMounth);
 
         const res = await fetch(
           `http://localhost:5000/api/progressao/progresso-carga?${params.toString()}`,
@@ -77,7 +77,7 @@ const Dashboard = () => {
         );
         if (res.ok) {
           const data = await res.json();
-          setProgresso(data);
+          setProgress(data);
         } else {
           console.error("Erro ao buscar progresso:", res.status);
         }
@@ -92,16 +92,16 @@ const Dashboard = () => {
       setError(null);
 
       await Promise.all([
-        fetchProgresso(),
+        fetchProgress(),
         fetchVolume(),
-        fetchExerciciosUsuario(),
+        fetchUserExercise(),
       ]);
 
       setLoading(false);
     };
 
     loadDashboardData();
-  }, [exercicioSelecionado, mesSelecionado]);
+  }, [selectedExercise, selectedMounth]);
 
   if (loading) {
     return (
@@ -126,13 +126,13 @@ const Dashboard = () => {
       <div style={{ marginBottom: "20px" }}>
         <label>Filtrar por exercício: </label>
         <select
-          value={exercicioSelecionado}
-          onChange={(e) => setExercicioSelecionado(e.target.value)}
+          value={selectedExercise}
+          onChange={(e) => setSelectedExercise(e.target.value)}
           style={{ marginRight: "20px", padding: "5px" }}
         >
           <option value="">Todos</option>
           {}
-          {exerciciosUsuario.map((ex, i) => (
+          {userExercises.map((ex, i) => (
             <option key={i} value={ex}>
               {ex}
             </option>
@@ -141,8 +141,8 @@ const Dashboard = () => {
 
         <label>Filtrar por mês: </label>
         <select
-          value={mesSelecionado}
-          onChange={(e) => setMesSelecionado(e.target.value)}
+          value={selectedMounth}
+          onChange={(e) => setSelectedMounth(e.target.value)}
           style={{ padding: "5px" }}
         >
           <option value="">Todos</option>
@@ -154,7 +154,7 @@ const Dashboard = () => {
         </select>
       </div>
 
-      {progresso.length === 0 && volume.length === 0 ? (
+      {progress.length === 0 && volume.length === 0 ? (
         <div style={{ textAlign: "center", padding: "40px" }}>
           <p>
             Nenhum dado encontrado. Adicione alguns treinos para ver os
@@ -162,7 +162,7 @@ const Dashboard = () => {
           </p>
         </div>
       ) : (
-        <ProgressoChart progresso={progresso} volume={volume} />
+        <ChartProgress progresso={progress} volume={volume} />
       )}
     </div>
   );

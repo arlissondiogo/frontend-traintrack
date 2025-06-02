@@ -9,15 +9,15 @@ function AddWorkout() {
   const [selectedTreino, setSelectedTreino] = useState("");
   const [exercises, setExercises] = useState([]);
   const [series, setSeries] = useState("");
-  const [repeticoes, setRepeticoes] = useState("");
-  const [carga, setCarga] = useState("");
-  const [tempoDescanso, setTempoDescanso] = useState("");
-  const [tempoExecucao, setTempoExecucao] = useState("");
+  const [repetitions, setRepetitions] = useState("");
+  const [load, setLoad] = useState("");
+  const [restTime, setTimeRest] = useState("");
+  const [runtime, setRuntime] = useState("");
 
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState({ text: "", type: "" });
 
-  const exerciciosPorTreino = {
+  const exercisesPerWorkout = {
     peito: ["Supino reto", "Supino inclinado", "Crossover", "Crucifixo"],
     costas: ["Puxada frente", "Remada baixa", "Levantamento terra"],
     pernas: ["Agachamento", "Leg press", "Cadeira extensora"],
@@ -27,10 +27,10 @@ function AddWorkout() {
     abdomen: ["Abdominal supra", "Prancha", "Elevação de pernas"],
   };
 
-  const handleTreinoChange = (e) => {
-    const treino = e.target.value;
-    setSelectedTreino(treino);
-    setExercises(exerciciosPorTreino[treino] || []);
+  const handleTrainingChange = (e) => {
+    const training = e.target.value;
+    setSelectedTreino(training);
+    setExercises(exercisesPerWorkout[training] || []);
     setExerciseName("");
   };
 
@@ -56,7 +56,7 @@ function AddWorkout() {
       });
       return false;
     }
-    if (!repeticoes || repeticoes < 1) {
+    if (!repetitions || repetitions < 1) {
       setMessage({
         text: "Número de repetições deve ser maior que 0",
         type: "error",
@@ -87,12 +87,12 @@ function AddWorkout() {
       }
 
       const dataToSend = {
-        nomeExercicio: exerciseName.trim(),
+        exerciseName: exerciseName.trim(),
         series: parseInt(series),
-        repeticoes: parseInt(repeticoes),
-        carga: carga ? parseFloat(carga) : null,
-        tempoDescanso: timeToSeconds(tempoDescanso),
-        tempoExecucao: timeToSeconds(tempoExecucao),
+        repetitions: parseInt(repetitions),
+        load: load ? parseFloat(load) : null,
+        restTime: timeToSeconds(restTime),
+        runtime: timeToSeconds(runtime),
       };
 
       const response = await fetch(
@@ -116,10 +116,10 @@ function AddWorkout() {
         setExercises([]);
         setExerciseName("");
         setSeries("");
-        setRepeticoes("");
-        setCarga("");
-        setTempoDescanso("");
-        setTempoExecucao("");
+        setRepetitions("");
+        setLoad("");
+        setTimeRest("");
+        setRuntime("");
 
         setTimeout(() => {
           navigate("/home");
@@ -152,7 +152,7 @@ function AddWorkout() {
           <select
             id="treinoSelect"
             value={selectedTreino}
-            onChange={handleTreinoChange}
+            onChange={handleTrainingChange}
             required
           >
             <option value="">-- Selecione --</option>
@@ -204,8 +204,8 @@ function AddWorkout() {
             type="number"
             min="1"
             id="reps"
-            value={repeticoes}
-            onChange={(e) => setRepeticoes(e.target.value)}
+            value={repetitions}
+            onChange={(e) => setRepetitions(e.target.value)}
             placeholder="Ex: 12"
             required
           />
@@ -219,8 +219,8 @@ function AddWorkout() {
               min="0"
               id="weightUsed"
               step="0.5"
-              value={carga}
-              onChange={(e) => setCarga(e.target.value)}
+              value={load}
+              onChange={(e) => setLoad(e.target.value)}
               placeholder="Ex: 60"
             />
           </div>
@@ -229,8 +229,8 @@ function AddWorkout() {
             <input
               type="time"
               id="restTime"
-              value={tempoDescanso}
-              onChange={(e) => setTempoDescanso(e.target.value)}
+              value={restTime}
+              onChange={(e) => setTimeRest(e.target.value)}
             />
           </div>
         </div>
@@ -240,8 +240,8 @@ function AddWorkout() {
           <input
             type="time"
             id="executionTime"
-            value={tempoExecucao}
-            onChange={(e) => setTempoExecucao(e.target.value)}
+            value={runtime}
+            onChange={(e) => setRuntime(e.target.value)}
           />
         </div>
 

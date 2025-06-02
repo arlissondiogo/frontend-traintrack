@@ -25,11 +25,11 @@ function AppContent() {
       <main className="main-content">
         <Routes>
           <Route path="/home" element={<Home />} />
-          <Route path="/adicionar" element={<AddWorkout />} />
+          <Route path="/add" element={<AddWorkout />} />
           <Route path="/perfil" element={<Profile />} />
           <Route path="/login" element={<Login />} />
           <Route path="/cadastro" element={<SingUp />} />
-          <Route path="/recuperar-senha" element={<ForgotPassword />} />
+          <Route path="/forget-password" element={<ForgotPassword />} />
           <Route path="/editar-user" element={<UpdateUser />} />
           <Route path="/reset-password" element={<ResetPassword />} />
           <Route path="/historico" element={<History />} />

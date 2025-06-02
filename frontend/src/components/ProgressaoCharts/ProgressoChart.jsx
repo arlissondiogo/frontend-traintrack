@@ -2,13 +2,13 @@ import { Line, Bar } from "react-chartjs-2";
 import { Chart, registerables } from "chart.js";
 Chart.register(...registerables);
 
-const ProgressoChart = ({ progresso, volume }) => {
+const ProgressChart = ({ progress, volume }) => {
   const lineData = {
-    labels: progresso.map((d) => `Semana ${d._id.week}`),
+    labels: progress.map((d) => `Semana ${d._id.week}`),
     datasets: [
       {
         label: "Carga Média (kg)",
-        data: progresso.map((d) => d.cargaMedia),
+        data: progress.map((d) => d.cargaMedia),
         borderColor: "green",
         fill: false,
         tension: 0.3,
@@ -21,7 +21,7 @@ const ProgressoChart = ({ progresso, volume }) => {
     datasets: [
       {
         label: "Volume (kg)",
-        data: volume.map((d) => d.volumeTotal),
+        data: volume.map((d) => d.totalVolume),
         backgroundColor: "#69bff8",
       },
     ],
@@ -38,4 +38,4 @@ const ProgressoChart = ({ progresso, volume }) => {
   );
 };
 
-export default ProgressoChart;
+export default ProgressChart;
