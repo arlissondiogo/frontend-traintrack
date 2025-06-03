@@ -50,7 +50,7 @@ const Home = () => {
         const dataUltimosTreinos = await resUltimosTreinos.json();
         console.log("Dados recebidos da API:", dataUltimosTreinos);
 
-        setUltimosTreinos(dataUltimosTreinos.slice(0, 5));
+        setUltimosTreinos(dataUltimosTreinos.workouts || []);
 
         const resExercicios = await fetch(
           "http://localhost:5000/api/workout/list-workout",
