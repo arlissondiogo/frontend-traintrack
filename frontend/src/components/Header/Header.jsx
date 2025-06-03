@@ -6,48 +6,57 @@ import { NavLink } from "react-router-dom";
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen);
-  };
+  const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
   return (
     <header className="header">
       <div className="header-inner">
         <div className="logo-container">
-          <a href="../pages/home">
-            <img src="/logo-sem-fundo.png" alt="Logo" className="logo" title="Logo TrainTrack" />
+          <a href="/home">
+            <img
+              src="/logo-sem-fundo.png"
+              alt="Logo"
+              className="logo"
+              title="Logo TrainTrack"
+            />
           </a>
-          <a href="../pages/home">
+          <a href="/home">
             <h1 className="brand">TrainTrack</h1>
           </a>
         </div>
-        <button className="menu-btn" onClick={toggleMenu} aria-label="Abrir menu">
-          <Menu size={30} />
+
+        <button
+          className="menu-btn"
+          onClick={toggleMenu}
+          aria-label="Abrir menu"
+        >
+          <Menu size={28} />
         </button>
+
         <nav className={`nav-bar ${isMenuOpen ? "open" : ""}`}>
           <ul className="nav-list">
-            <li className="nav-item">
-              <NavLink to="/home" className="nav-link" aria-label="Início">
-                <Home size={20} className="nav-icon" />
-                <span className="nav-text">Início</span>
+            <li>
+              <NavLink to="/home" className="nav-link">
+                <Home size={20} />
+                <span>Início</span>
               </NavLink>
             </li>
-            <li className="nav-item">
-              <NavLink to="/adicionar" className="nav-link" aria-label="Adicionar treino">
-                <PlusCircle size={20} className="nav-icon" />
-                <span className="nav-text">Adicionar treino</span>
+            <li>
+              <NavLink to="/adicionar" className="nav-link">
+                <PlusCircle size={20} />
+                <span>Adicionar</span>
               </NavLink>
             </li>
-            <li className="nav-item">
-              <NavLink to="/perfil" className="nav-link" aria-label="Perfil e configurações">
-                <User size={20} className="nav-icon" />
-                <span className="nav-text">Perfil</span>
+            <li>
+              <NavLink to="/perfil" className="nav-link">
+                <User size={20} />
+                <span>Perfil</span>
               </NavLink>
             </li>
-            <li className="nav-item">
-              <NavLink to="/login" className="nav-link" aria-label="Sair">
-                <LogOut size={20} className="nav-icon" />
-                <span className="nav-text">Sair</span>
+            <li>
+              <NavLink to="/login" className="nav-link">
+                <LogOut size={20} />
+                <span>Sair</span>
               </NavLink>
             </li>
           </ul>
