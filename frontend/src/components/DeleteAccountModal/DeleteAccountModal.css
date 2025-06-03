@@ -30,7 +30,7 @@
 }
 
 .btn-cancel {
-  background-color: #b91c1c; /* vermelho */
+  background-color: #1f2937; /* vermelho */
   color: white;
   padding: 8px 16px;
   border-radius: 8px;
@@ -39,7 +39,7 @@
 }
 
 .btn-confirm {
-  background-color: #1f2937; /* cinza escuro */
+  background-color: #b91c1c; /* cinza escuro */
   color: white;
   padding: 8px 16px;
   border-radius: 8px;
