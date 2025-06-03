@@ -24,6 +24,7 @@ function AppContent() {
     location.pathname === "/cadastro" ||
     location.pathname === "/reset-password" ||
     location.pathname === "/recuperar-senha";
+  const hideHeaderPaths = ["/forgot-password"]; // rotas que não mostram header
 
   return (
     <div className="app-container">
