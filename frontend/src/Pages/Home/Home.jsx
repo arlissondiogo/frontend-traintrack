@@ -9,6 +9,11 @@ const Home = () => {
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
 
+  const formatarData = (data) => {
+    const date = new Date(data);
+    return date.toLocaleDateString("pt-BR");
+  };
+
   useEffect(() => {
     const fetchDados = async () => {
       const token = localStorage.getItem("token");
@@ -20,7 +25,7 @@ const Home = () => {
 
       try {
         const resUltimosTreinos = await fetch(
-          "http://localhost:5000/api/workouts/list-workout?limit=5",
+          "http://localhost:5000/api/workout/list-workout?limit=5",
           {
             headers: {
               Authorization: `Bearer ${token}`,
@@ -44,10 +49,11 @@ const Home = () => {
 
         const dataUltimosTreinos = await resUltimosTreinos.json();
         console.log("Dados recebidos da API:", dataUltimosTreinos);
+
         setUltimosTreinos(dataUltimosTreinos.slice(0, 5));
 
         const resExercicios = await fetch(
-          "http://localhost:5000/api/workouts/list-workout",
+          "http://localhost:5000/api/workout/list-workout",
           {
             headers: {
               Authorization: `Bearer ${token}`,
@@ -82,7 +88,9 @@ const Home = () => {
   if (loading) {
     return (
       <div className="home-container">
-        <p>Carregando...</p>
+        <div className="loading-container">
+          <p>Carregando...</p>
+        </div>
       </div>
     );
   }
@@ -99,30 +107,63 @@ const Home = () => {
         <div className="recent-workouts">
           <h3>Últimos treinos adicionados</h3>
           {ultimosTreinos.length === 0 ? (
-            <p>Nenhum treino encontrado.</p>
+            <div className="no-workouts">
+              <p>Nenhum treino encontrado.</p>
+              <p>Comece adicionando seu primeiro treino!</p>
+            </div>
           ) : (
-            ultimosTreinos.map((treino, idx) => (
-              <div key={treino._id || idx} className="treino-card">
-                <div>
-                  <strong>Exercício:</strong> {treino.nomeExercicio}
-                </div>
-                <div>
-                  <strong>Séries e repetições:</strong> {treino.series || 0}x
-                  {treino.repeticoes || 0}
-                </div>
-                <div>
-                  <strong>Peso:</strong> {treino.carga || 0}kg
-                </div>
-                <div>
-                  <strong>Descanso:</strong> {treino.tempoDescanso || 0}s
-                </div>
-                {treino.tempoExecucao && (
-                  <div>
-                    <strong>Tempo de execução:</strong> {treino.tempoExecucao}s
+            <div className="workouts-list">
+              {ultimosTreinos.map((treino, idx) => (
+                <div key={treino._id || idx} className="treino-card">
+                  <div className="treino-header">
+                    <h4 className="exercicio-nome">{treino.nomeExercicio}</h4>
+                    {treino.createdAt && (
+                      <span className="treino-data">
+                        {formatarData(treino.createdAt)}
+                      </span>
+                    )}
                   </div>
-                )}
-              </div>
-            ))
+
+                  <div className="treino-details">
+                    {treino.series && treino.repeticoes && (
+                      <div className="detail-item">
+                        <span className="detail-label">
+                          Séries x Repetições:
+                        </span>
+                        <span className="detail-value">
+                          {treino.series}x{treino.repeticoes}
+                        </span>
+                      </div>
+                    )}
+
+                    {treino.carga && treino.carga > 0 && (
+                      <div className="detail-item">
+                        <span className="detail-label">Peso:</span>
+                        <span className="detail-value">{treino.carga}kg</span>
+                      </div>
+                    )}
+
+                    {treino.tempoDescanso && treino.tempoDescanso > 0 && (
+                      <div className="detail-item">
+                        <span className="detail-label">Tempo de descanso:</span>
+                        <span className="detail-value">
+                          {treino.tempoDescanso}s
+                        </span>
+                      </div>
+                    )}
+
+                    {treino.tempoExecucao && treino.tempoExecucao > 0 && (
+                      <div className="detail-item">
+                        <span className="detail-label">Tempo de execução:</span>
+                        <span className="detail-value">
+                          {treino.tempoExecucao}s
+                        </span>
+                      </div>
+                    )}
+                  </div>
+                </div>
+              ))}
+            </div>
           )}
         </div>
       </div>

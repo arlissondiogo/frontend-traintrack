@@ -1,4 +1,10 @@
-import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+  useLocation,
+  Navigate,
+} from "react-router-dom";
 
 import Header from "./components/Header/Header.jsx";
 import Home from "./Pages/Home/Home.jsx";
@@ -24,6 +30,10 @@ function AppContent() {
       {!isAuthPage && <Header />}
       <main className="main-content">
         <Routes>
+          {/* Redirecionamento da raiz para login */}
+          <Route path="/" element={<Navigate to="/login" replace />} />
+
+          {/* Demais rotas */}
           <Route path="/home" element={<Home />} />
           <Route path="/adicionar" element={<AddWorkout />} />
           <Route path="/perfil" element={<Profile />} />

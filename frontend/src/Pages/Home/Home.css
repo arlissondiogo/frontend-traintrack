@@ -4,6 +4,15 @@
   color: #2e3d3f;
 }
 
+.loading-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 200px;
+  font-size: 1.2rem;
+  color: #666;
+}
+
 .dashboard-section {
   display: flex;
   gap: 20px;
@@ -33,10 +42,110 @@
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
+.recent-workouts h3 {
+  margin-top: 0;
+  margin-bottom: 20px;
+  color: #1e8449;
+  font-size: 1.3rem;
+  text-align: center;
+}
+
+.no-workouts {
+  text-align: center;
+  color: #666;
+  padding: 40px 20px;
+}
+
+.no-workouts p {
+  margin: 10px 0;
+}
+
+.workouts-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
 .treino-card {
   background-color: #b6e3c6;
   border-radius: 12px;
-  padding: 12px;
-  margin-bottom: 15px;
+  padding: 16px;
   font-size: 0.95rem;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.treino-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.treino-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid rgba(30, 132, 73, 0.2);
+}
+
+.exercicio-nome {
+  margin: 0;
+  color: #1e8449;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.treino-data {
+  color: #666;
+  font-size: 0.85rem;
+  background-color: rgba(255, 255, 255, 0.7);
+  padding: 4px 8px;
+  border-radius: 8px;
+}
+
+.treino-details {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.detail-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 4px 0;
+}
+
+.detail-label {
+  font-weight: 500;
+  color: #333;
+  font-size: 0.9rem;
+}
+
+.detail-value {
+  font-weight: 600;
+  color: #1e8449;
+  background-color: rgba(255, 255, 255, 0.8);
+  padding: 4px 8px;
+  border-radius: 6px;
+  font-size: 0.9rem;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .dashboard-section {
+    flex-direction: column;
+  }
+
+  .treino-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  .detail-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+  }
 }

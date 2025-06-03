@@ -27,7 +27,7 @@ function TrainTrackLogin() {
       }
 
       localStorage.setItem("token", data.token);
-      navigate("/perfil"); // depois vou trocar pra home. como eu tô testando eu deixei assim
+      navigate("/home");
     } catch {
       alert("Erro ao conectar com o servidor.");
     }

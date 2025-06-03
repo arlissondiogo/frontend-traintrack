@@ -22,7 +22,7 @@ const ProgressoChart = ({ progresso, volume }) => {
       {
         label: "Volume (kg)",
         data: volume.map((d) => d.volumeTotal),
-        backgroundColor: "#69bff8",
+        backgroundColor: "#27ae60",
       },
     ],
   };
