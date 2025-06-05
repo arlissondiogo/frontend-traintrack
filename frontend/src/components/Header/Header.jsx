@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import "./Header.css";
 import { Home, PlusCircle, User, LogOut, Menu } from "lucide-react";
 import { NavLink } from "react-router-dom";
