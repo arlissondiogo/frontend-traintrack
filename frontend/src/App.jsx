@@ -16,6 +16,7 @@ import ForgotPassword from "./Pages/ForgotPassword/ForgotPassword.jsx";
 import UpdateUser from "./Pages/UpdateProfile/UpdateProfile.jsx";
 import History from "./Pages/UpdateProfile/History.jsx";
 import NotFound from "./Pages/NotFound/NotFound.jsx";
+import ResetPassaword from "./Pages/ResetPassword/ResetPassword.jsx";
 
 function AppContent() {
   const location = useLocation();
@@ -28,7 +29,12 @@ function AppContent() {
     "/historico",
   ];
 
-  const authRoutes = ["/login", "/cadastro", "/recuperar-senha"];
+  const authRoutes = [
+    "/login",
+    "/cadastro",
+    "/recuperar-senha",
+    "/reset-password",
+  ];
 
   const shouldHideHeader =
     authRoutes.includes(location.pathname) ||
@@ -46,6 +52,7 @@ function AppContent() {
           <Route path="/login" element={<Login />} />
           <Route path="/cadastro" element={<SingUp />} />
           <Route path="/recuperar-senha" element={<ForgotPassword />} />
+          <Route path="/reset-password" element={<ResetPassaword />} />
           <Route path="/editar-user" element={<UpdateUser />} />
           <Route path="/historico" element={<History />} />
           <Route path="*" element={<NotFound />} />
