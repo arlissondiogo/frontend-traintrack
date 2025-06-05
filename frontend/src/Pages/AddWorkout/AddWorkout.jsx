@@ -195,7 +195,7 @@ function AddWorkout() {
         )}
 
         <div className="input-group">
-          <label htmlFor="setsReps">Séries: *</label>
+          <label htmlFor="setsReps">Séries: </label>
           <input
             type="number"
             min="1"
@@ -203,12 +203,11 @@ function AddWorkout() {
             value={series}
             onChange={(e) => setSeries(e.target.value)}
             placeholder="Ex: 3"
-            required
           />
         </div>
 
         <div className="input-group">
-          <label htmlFor="reps">Repetições: *</label>
+          <label htmlFor="reps">Repetições: </label>
           <input
             type="number"
             min="1"
@@ -216,7 +215,6 @@ function AddWorkout() {
             value={repeticoes}
             onChange={(e) => setRepeticoes(e.target.value)}
             placeholder="Ex: 12"
-            required
           />
         </div>
 
