@@ -14,27 +14,32 @@ import Login from "./Pages/Login/TrainTrackLogin.jsx";
 import SingUp from "./Pages/SingUp/TrainTrackSingup.jsx";
 import ForgotPassword from "./Pages/ForgotPassword/ForgotPassword.jsx";
 import UpdateUser from "./Pages/UpdateProfile/UpdateProfile.jsx";
-import ResetPassword from "./Pages/ResetPassword/ResetPassword.jsx";
 import History from "./Pages/UpdateProfile/History.jsx";
+import NotFound from "./Pages/NotFound/NotFound.jsx";
 
 function AppContent() {
   const location = useLocation();
-  const isAuthPage =
-    location.pathname === "/login" ||
-    location.pathname === "/cadastro" ||
-    location.pathname === "/reset-password" ||
-    location.pathname === "/recuperar-senha";
-  const hideHeaderPaths = ["/forgot-password"]; // rotas que não mostram header
+
+  const knownRoutes = [
+    "/home",
+    "/adicionar",
+    "/perfil",
+    "/editar-user",
+    "/historico",
+  ];
+
+  const authRoutes = ["/login", "/cadastro", "/recuperar-senha"];
+
+  const shouldHideHeader =
+    authRoutes.includes(location.pathname) ||
+    ![...authRoutes, ...knownRoutes].includes(location.pathname);
 
   return (
     <div className="app-container">
-      {!isAuthPage && <Header />}
+      {!shouldHideHeader && <Header />}
       <main className="main-content">
         <Routes>
-          {/* Redirecionamento da raiz para login */}
           <Route path="/" element={<Navigate to="/login" replace />} />
-
-          {/* Demais rotas */}
           <Route path="/home" element={<Home />} />
           <Route path="/adicionar" element={<AddWorkout />} />
           <Route path="/perfil" element={<Profile />} />
@@ -42,8 +47,8 @@ function AppContent() {
           <Route path="/cadastro" element={<SingUp />} />
           <Route path="/recuperar-senha" element={<ForgotPassword />} />
           <Route path="/editar-user" element={<UpdateUser />} />
-          <Route path="/reset-password" element={<ResetPassword />} />
           <Route path="/historico" element={<History />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </main>
     </div>
