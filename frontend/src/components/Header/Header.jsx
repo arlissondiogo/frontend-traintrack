@@ -1,12 +1,21 @@
+
 import { useState } from "react";
 import "./Header.css";
 import { Home, PlusCircle, User, LogOut, Menu } from "lucide-react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom"; // 1. Importe useNavigate
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const navigate = useNavigate(); // 2. Inicialize o hook useNavigate
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
+
+  // 3. Crie a função handleLogout
+  const handleLogout = () => {
+    localStorage.removeItem("token"); // Remove o token do localStorage
+    setIsMenuOpen(false); // Fecha o menu (se estiver aberto em mobile)
+    navigate("/login"); // Redireciona para a página de login
+  };
 
   return (
     <header className="header">
@@ -36,28 +45,29 @@ const Header = () => {
         <nav className={`nav-bar ${isMenuOpen ? "open" : ""}`}>
           <ul className="nav-list">
             <li>
-              <NavLink to="/home" className="nav-link">
+              <NavLink to="/home" className="nav-link" onClick={() => setIsMenuOpen(false)}>
                 <Home size={20} />
                 <span>Início</span>
               </NavLink>
             </li>
             <li>
-              <NavLink to="/adicionar" className="nav-link">
+              <NavLink to="/adicionar" className="nav-link" onClick={() => setIsMenuOpen(false)}>
                 <PlusCircle size={20} />
                 <span>Adicionar</span>
               </NavLink>
             </li>
             <li>
-              <NavLink to="/perfil" className="nav-link">
+              <NavLink to="/perfil" className="nav-link" onClick={() => setIsMenuOpen(false)}>
                 <User size={20} />
                 <span>Perfil</span>
               </NavLink>
             </li>
             <li>
-              <NavLink to="/login" className="nav-link">
+              {/* 4. Modifique o item "Sair" para usar um botão com onClick */}
+              <button onClick={handleLogout} className="nav-link logout-button">
                 <LogOut size={20} />
                 <span>Sair</span>
-              </NavLink>
+              </button>
             </li>
           </ul>
         </nav>
@@ -67,3 +77,4 @@ const Header = () => {
 };
 
 export default Header;
+
