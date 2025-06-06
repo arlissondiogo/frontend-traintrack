@@ -2,19 +2,19 @@
 import { useState } from "react";
 import "./Header.css";
 import { Home, PlusCircle, User, LogOut, Menu } from "lucide-react";
-import { NavLink, useNavigate } from "react-router-dom"; // 1. Importe useNavigate
+import { NavLink, useNavigate } from "react-router-dom"; 
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const navigate = useNavigate(); // 2. Inicialize o hook useNavigate
+  const navigate = useNavigate(); 
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
-  // 3. Crie a função handleLogout
+  
   const handleLogout = () => {
-    localStorage.removeItem("token"); // Remove o token do localStorage
-    setIsMenuOpen(false); // Fecha o menu (se estiver aberto em mobile)
-    navigate("/login"); // Redireciona para a página de login
+    localStorage.removeItem("token"); 
+    setIsMenuOpen(false); 
+    navigate("/login"); 
   };
 
   return (
@@ -63,7 +63,6 @@ const Header = () => {
               </NavLink>
             </li>
             <li>
-              {/* 4. Modifique o item "Sair" para usar um botão com onClick */}
               <button onClick={handleLogout} className="nav-link logout-button">
                 <LogOut size={20} />
                 <span>Sair</span>
