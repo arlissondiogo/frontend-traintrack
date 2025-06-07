@@ -1,11 +1,86 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Profile.css";
 import DeleteAccountModal from "../../components/DeleteAccountModal/DeleteAccountModal.jsx";
 
 export default function Profile() {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [userData, setUserData] = useState({
+    nome: "",
+    idade: 0,
+    email: "",
+    altura: 0,
+    peso: 0,
+  });
+  const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const fetchUserData = async () => {
+      const token = localStorage.getItem("token");
+      if (!token) {
+        navigate("/login");
+        return;
+      }
+
+      try {
+        const response = await fetch("http://localhost:5000/api/user/me", {
+          method: "GET",
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+
+        if (response.ok) {
+          const data = await response.json();
+          const userData = data.usuario;
+
+          setUserData({
+            nome: userData.nome,
+            idade: userData.idade,
+            email: userData.email,
+            altura: userData.altura,
+            peso: userData.peso,
+          });
+
+          localStorage.setItem(
+            "userData",
+            JSON.stringify({
+              nome: userData.nome,
+              idade: userData.idade,
+              email: userData.email,
+              altura: userData.altura,
+              peso: userData.peso,
+            })
+          );
+        } else {
+          const savedUserData = localStorage.getItem("userData");
+          if (savedUserData) {
+            setUserData(JSON.parse(savedUserData));
+          }
+        }
+        setLoading(false);
+      } catch (error) {
+        console.error("Erro ao carregar dados do usuário:", error);
+        const savedUserData = localStorage.getItem("userData");
+        if (savedUserData) {
+          setUserData(JSON.parse(savedUserData));
+        }
+        setLoading(false);
+      }
+    };
+
+    fetchUserData();
+  }, [navigate]);
+
+  const calculateIMC = () => {
+    if (userData.peso > 0 && userData.altura > 0) {
+      const alturaEmMetros = userData.altura / 100;
+      const imc = userData.peso / (alturaEmMetros * alturaEmMetros);
+      return imc.toFixed(2);
+    }
+    return "0";
+  };
 
   const handleDelete = async () => {
     const token = localStorage.getItem("token");
@@ -39,39 +114,52 @@ export default function Profile() {
     }
   };
 
+  if (loading) {
+    return <div className="profile-page">Carregando...</div>;
+  }
+
   return (
     <div className="profile-page">
       <main className="profile-main">
         <div className="info-box">
           <div className="user-info">
             <p>
-              <strong>Nome:</strong> Arlisson Diogo
+              <strong>Nome:</strong> {userData.nome || "Não informado"}
             </p>
             <p>
-              <strong>Idade:</strong> 23
+              <strong>Idade:</strong> {userData.idade || "Não informado"}
             </p>
             <p>
-              <strong>e-mail:</strong> a@gmail.com
+              <strong>e-mail:</strong> {userData.email || "Não informado"}
             </p>
           </div>
           <div className="metrics">
             <div className="metric green">
               <p>Altura</p>
-              <p>175 cm</p>
+              <p>
+                {userData.altura > 0
+                  ? `${userData.altura} cm`
+                  : "Não informado"}
+              </p>
             </div>
             <div className="metric green">
               <p>Peso</p>
-              <p>91 kg</p>
+              <p>
+                {userData.peso > 0 ? `${userData.peso} kg` : "Não informado"}
+              </p>
             </div>
             <div className="metric dark">
               <p>IMC</p>
-              <p>26,59</p>
+              <p>{calculateIMC()}</p>
             </div>
           </div>
         </div>
 
         <div className="actions-box">
-          <button className="btn grey" onClick={() => navigate("/editar-user")}>
+          <button
+            className="btn grey"
+            onClick={() => navigate("/editar-user", { state: { userData } })}
+          >
             Editar informações
           </button>
           <button className="btn grey" onClick={() => navigate("/historico")}>
