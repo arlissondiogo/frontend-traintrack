@@ -24,12 +24,15 @@ export default function Profile() {
       }
 
       try {
-        const response = await fetch("http://localhost:5000/api/user/me", {
-          method: "GET",
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
+        const response = await fetch(
+          `${import.meta.env.VITE_API_BASE_URL}/api/user/me`,
+          {
+            method: "GET",
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
 
         if (response.ok) {
           const data = await response.json();
@@ -88,7 +91,7 @@ export default function Profile() {
 
     try {
       const response = await fetch(
-        `http://localhost:5000/api/user/deleteUsers/${userId}`,
+        `${import.meta.env.VITE_API_BASE_URL}/api/user/deleteUsers/${userId}`,
         {
           method: "DELETE",
           headers: {

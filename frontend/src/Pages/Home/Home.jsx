@@ -25,7 +25,9 @@ const Home = () => {
 
       try {
         const resUltimosTreinos = await fetch(
-          "http://localhost:5000/api/workout/list-workout?limit=5",
+          `${
+            import.meta.env.VITE_API_BASE_URL
+          }/api/workout/list-workout?limit=5`,
           {
             headers: {
               Authorization: `Bearer ${token}`,
@@ -53,7 +55,7 @@ const Home = () => {
         setUltimosTreinos(dataUltimosTreinos.workouts || []);
 
         const resExercicios = await fetch(
-          "http://localhost:5000/api/workout/list-workout",
+          `${import.meta.env.VITE_API_BASE_URL}/api/workout/list-workout`,
           {
             headers: {
               Authorization: `Bearer ${token}`,

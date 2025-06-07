@@ -29,7 +29,9 @@ const Dashboard = () => {
       }
 
       const res = await fetch(
-        `http://localhost:5000/api/progressao/volume-total?${params.toString()}`,
+        `${
+          import.meta.env.VITE_API_BASE_URL
+        }/api/progressao/volume-total?${params.toString()}`,
         {
           headers: getAuthHeaders(),
         }
@@ -49,7 +51,7 @@ const Dashboard = () => {
   const fetchExerciciosUsuario = async () => {
     try {
       const res = await fetch(
-        `http://localhost:5000/api/progressao/exercicios-unicos`,
+        `${import.meta.env.VITE_API_BASE_URL}/api/progressao/exercicios-unicos`,
         {
           headers: getAuthHeaders(),
         }
@@ -77,7 +79,9 @@ const Dashboard = () => {
       }
 
       const res = await fetch(
-        `http://localhost:5000/api/progressao/progresso-carga?${params.toString()}`,
+        `${
+          import.meta.env.VITE_API_BASE_URL
+        }/api/progressao/progresso-carga?${params.toString()}`,
         {
           headers: getAuthHeaders(),
         }

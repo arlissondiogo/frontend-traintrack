@@ -85,7 +85,9 @@ export default function History() {
       }
 
       const response = await fetch(
-        `http://localhost:5000/api/workout/list-workout?page=${page}&limit=${pagination.limit}`,
+        `${
+          import.meta.env.VITE_API_BASE_URL
+        }/api/workout/list-workout?page=${page}&limit=${pagination.limit}`,
         {
           method: "GET",
           headers: {
@@ -133,7 +135,7 @@ export default function History() {
       const token = localStorage.getItem("token");
 
       const response = await fetch(
-        `http://localhost:5000/api/workout/delete-workout/${id}`,
+        `${import.meta.env.VITE_API_BASE_URL}/api/workout/delete-workout/${id}`,
         {
           method: "DELETE",
           headers: {
@@ -196,7 +198,9 @@ export default function History() {
       };
 
       const response = await fetch(
-        `http://localhost:5000/api/workout/update-workout/${treinoParaEditar}`,
+        `${
+          import.meta.env.VITE_API_BASE_URL
+        }/api/workout/update-workout/${treinoParaEditar}`,
         {
           method: "PUT",
           headers: {
