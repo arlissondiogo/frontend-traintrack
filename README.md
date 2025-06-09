@@ -259,7 +259,7 @@ npm run build
 
 ## 📄 Licença
 
-Este projeto está sob a licença especificada no arquivo LICENSE.
+Este projeto está sob a licença MIT. Veja o arquivo `LICENSE` para mais detalhes.
 
 ---
 
