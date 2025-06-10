@@ -87,11 +87,10 @@ export default function Profile() {
 
   const handleDelete = async () => {
     const token = localStorage.getItem("token");
-    const userId = JSON.parse(atob(token.split(".")[1])).id;
 
     try {
       const response = await fetch(
-        `${import.meta.env.VITE_API_BASE_URL}/api/user/delete/${userId}`,
+        `${import.meta.env.VITE_API_BASE_URL}/api/user/delete`,
         {
           method: "DELETE",
           headers: {
