@@ -91,7 +91,7 @@ export default function Profile() {
 
     try {
       const response = await fetch(
-        `${import.meta.env.VITE_API_BASE_URL}/api/user/deleteUsers/${userId}`,
+        `${import.meta.env.VITE_API_BASE_URL}/api/user/delete/${userId}`,
         {
           method: "DELETE",
           headers: {
